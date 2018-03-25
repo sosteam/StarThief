@@ -8,7 +8,7 @@ public class ScreenController : MonoBehaviour
     void Awake()
     { 
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
-        Screen.SetResolution(540, 960, true); // true는 전체화면옵션
+        Screen.SetResolution(900, 1600, true); // true는 전체화면옵션
     }
 
 	// Use this for initialization
