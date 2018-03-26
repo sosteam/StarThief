@@ -4,35 +4,58 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour 
 {
-	float playerSpeedMove;
-	float playerSpeedRotate;
-	Rigidbody2D rb;
+	float m_playerSpeedMove;
+	float m_playerSpeedRotate;
+	StageController m_stageController;
+	Rigidbody2D m_rb;
+
 	// Use this for initialization
-	Vector2 v2 = new Vector2(45, 45);  //방향  target.position - player.position;
-	Vector2 playerVelocity;
 	void Start () 
 	{
-		rb = GetComponent<Rigidbody2D>();
+		m_rb = GetComponent<Rigidbody2D>();
 		SetValue setValue = GameObject.Find("SetValue").GetComponent<SetValue>(); 
-		playerSpeedMove = setValue.globalSpeed.PlayerMove;
-		playerSpeedRotate = setValue.globalSpeed.PlayerRotate;
-
-		movePlayer();
+		m_playerSpeedMove = setValue.globalSpeed.PlayerMove;
+		m_playerSpeedRotate = setValue.globalSpeed.PlayerRotate;
+		m_stageController = GameObject.FindWithTag("GameController").GetComponent<StageController>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		if( Input.GetMouseButton(0))
+		{
+			Vector3 vMousePosition = Input.mousePosition;
+			vMousePosition.z = 0;
+			vMousePosition = Camera.main.ScreenToWorldPoint (vMousePosition);
 
+			Vector2 vDirection = vMousePosition - transform.position;
+			vDirection = vDirection / vDirection.magnitude;
+
+			movePlayer( vDirection);
+		}
 	}
 
 	void FixedUpdate() 
 	{
-		
+		 
 	}
 
-	void movePlayer()
+	void movePlayer( Vector2 vDirection)
 	{
-		 rb.AddForce( new Vector2(45.0f,45.0f) * playerSpeedMove);
+		 m_rb.AddForce( vDirection * m_playerSpeedMove);
 	}
+
+	 void OnCollisionEnter2D(Collision2D collision) 
+	 {
+		if(collision.gameObject.tag == "Block")
+		{
+            Destroy( collision.gameObject);
+        }
+
+		if(collision.gameObject.tag == "BlackHole")
+		{
+			m_stageController.nextStage();
+		}
+      
+    }
 }
