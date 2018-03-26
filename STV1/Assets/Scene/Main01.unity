@@ -265,6 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StageNumber: 10
   Block: {fileID: 1742237503937666, guid: 68a847396ebcbbf43a681c8ff0f8bbfd, type: 2}
+  BlackHole: {fileID: 571545323}
 --- !u!1 &359684097
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,12 +307,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalSpeed:
-    PlayerMove: 0.15
+    PlayerMove: 0.02
     PlayerRotate: 0.0015
   globalScreen:
     ScreenX: 11.2
     ScreenY: 20
-    BlackHoleRadius: 1.5
+    BlackHoleRadius: 1
     BlockCountX: 10
     BlockCountY: 24
     BlockSizeX: 1.12
@@ -400,7 +401,7 @@ Transform:
   m_GameObject: {fileID: 571545323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6

@@ -6,6 +6,7 @@ public class StageController : MonoBehaviour
 {
 	public int StageNumber;
 	public GameObject Block;
+	public GameObject BlackHole;
 	float m_fScreenX;
 	float m_fScreenY;
 	float m_fBlackHoleRadius;
@@ -32,6 +33,7 @@ public class StageController : MonoBehaviour
 	public void startStage( int nStage)
 	{
 		makeAllBlock( nStage);
+		resetBlackHole();
 	}
 
 	public void nextStage()
@@ -44,10 +46,11 @@ public class StageController : MonoBehaviour
 	void makeAllBlock( int nBlockMax)
 	{
 		//블럭 생성
+		//Debug.Log( "Random:" + (-m_nBlockCountY/2) + "," +  ((m_nBlockCountY/2) -1));
 		for( int nBlock = 0; nBlock < nBlockMax; nBlock++)
 		{
-			int nPosX = Random.Range( -m_nBlockCountX/2, m_nBlockCountX/2 -1);
-			int nPosY = Random.Range( -m_nBlockCountY/2, m_nBlockCountY/2 -1);
+			int nPosX = Random.Range( -m_nBlockCountX/2, m_nBlockCountX/2);
+			int nPosY = Random.Range( (-m_nBlockCountY/2) +1, (m_nBlockCountY/2)+1);
 			//Debug.Log( nPosX + "," + nPosY);
 			Vector2 vPos = new Vector2( nPosX * m_fBlockSizeX, nPosY * m_fBlokcSizeY);
 			Instantiate( Block, vPos, Quaternion.identity);
@@ -56,10 +59,9 @@ public class StageController : MonoBehaviour
 
 	void resetBlackHole()
 	{
-			float fPosX = Random.Range( -m_fScreenX/2.0f + m_fBlackHoleRadius, m_fScreenX/2.0f - m_fBlackHoleRadius);
-			float fPosY = Random.Range( -m_fScreenY/2.0f + m_fBlackHoleRadius, m_fScreenY/2.0f - m_fBlackHoleRadius);
+			float fPosX = Random.Range( (-m_fScreenX/2.0f) + m_fBlackHoleRadius, (m_fScreenX/2.0f) - m_fBlackHoleRadius);
+			float fPosY = Random.Range( (-m_fScreenY/2.0f) + m_fBlackHoleRadius, (m_fScreenY/2.0f) - m_fBlackHoleRadius);
 			//Debug.Log( fPosX + "," + fPosY);
-			Vector2 vPos = new Vector2( fPosX, fPosY);
-			Instantiate( Block, vPos, Quaternion.identity);
+			BlackHole.transform.Translate( fPosX, fPosY, 0.0f);
 	}
 }
