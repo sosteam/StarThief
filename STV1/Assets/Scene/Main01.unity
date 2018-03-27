@@ -314,9 +314,9 @@ MonoBehaviour:
     ScreenY: 20
     BlackHoleRadius: 1
     BlockCountX: 10
-    BlockCountY: 24
+    BlockCountY: 20
     BlockSizeX: 1.12
-    BlockSizeY: 0.825
+    BlockSizeY: 1
 --- !u!1 &571545323
 GameObject:
   m_ObjectHideFlags: 0
