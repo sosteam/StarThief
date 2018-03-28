@@ -7,6 +7,8 @@ public class StageController : MonoBehaviour
 	public int StageNumber;
 	public GameObject Block;
 	public GameObject BlackHole;
+	public GameObject Enemy01;
+	public GameObject Enemy02;
 	float m_fScreenX;
 	float m_fScreenY;
 	float m_fBlackHoleRadius;
@@ -63,5 +65,40 @@ public class StageController : MonoBehaviour
 			float fPosY = Random.Range( (-m_fScreenY/2.0f) + m_fBlackHoleRadius, (m_fScreenY/2.0f) - m_fBlackHoleRadius);
 			//Debug.Log( fPosX + "," + fPosY);
 			BlackHole.transform.Translate( fPosX, fPosY, 0.0f);
+	}
+
+	void resetEnemy()
+	{
+		//위치 선정
+		for( int nCount = 0; nCount < StageNumber; nCount++)
+		{
+			int nEdge = Random.Range(1, 5); // Top, Bottom, Left, Right 선정
+
+			// Top에 생성. Top의 X축 선상. 최상단 Y값보다 1 낮은 곳에 있다.
+			if( nEdge == 1)
+			{
+				float xPos = Random.Range( -m_fScreenX +1.0f, m_fScreenX - 1.0f);
+				float yPos = m_fScreenY/2 -1.0f;
+			}
+			// Bottom에 생성. Bottom의 X축 선상. 최하단 보다 1 높은 곳에 있다.
+			if( nEdge == 2)
+			{
+				float xPos = Random.Range( -m_fScreenX +1.0f, m_fScreenX - 1.0f);
+				float yPos = -m_fScreenY/2 +1.0f;
+			}
+			// Left에 생성. Left의 Y축 선상.  최왼쪽 보다 1 오른쪽에 있다.
+			if( nEdge == 3)
+			{
+				float xPos = -m_fScreenX/2 +1.0f;
+				float yPos = Random.Range( -m_fScreenY +1.0f, m_fScreenY - 1.0f);
+			}
+			// Right에 생성. Rigt의 Y축 선상. 최 오른쪽 보다 1 왼쪽에 있다.
+			if( nEdge == 4)
+			{
+				float xPos = m_fScreenX/2 -1.0f;
+				float yPos = Random.Range( -m_fScreenY +1.0f, m_fScreenY - 1.0f);
+			}
+
+		}
 	}
 }
