@@ -19,6 +19,8 @@ public class GlobalSpeed
 {
 	public float PlayerMove;
 	public float PlayerRotate;
+	public float Enemy01Move;
+	public float Enemy02Move;
 }
 
 public class SetValue : MonoBehaviour 

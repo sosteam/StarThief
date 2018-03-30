@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Block
   - BlackHole
+  - Enemy01
+  - Enemy02
   - Enemy
   layers:
   - Default

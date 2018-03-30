@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 	float m_playerSpeedRotate;
 	StageController m_stageController;
 	Rigidbody2D m_rb;
+	Vector2 m_vDirection;
 
 	// Use this for initialization
 	void Start () 
@@ -29,9 +30,10 @@ public class PlayerController : MonoBehaviour
 			vMousePosition = Camera.main.ScreenToWorldPoint (vMousePosition);
 
 			Vector2 vDirection = vMousePosition - transform.position;
-			vDirection = vDirection / vDirection.magnitude;
+			m_vDirection = vDirection / vDirection.magnitude;
 
-			movePlayer( vDirection);
+			//movePlayer( vDirection);
+			m_stageController.StageAction();
 		}
 	}
 
@@ -40,9 +42,9 @@ public class PlayerController : MonoBehaviour
 		 
 	}
 
-	void movePlayer( Vector2 vDirection)
+	void movePlayer()
 	{
-		 m_rb.AddForce( vDirection * m_playerSpeedMove);
+		 m_rb.AddForce( m_vDirection * m_playerSpeedMove);
 	}
 
 	 void OnCollisionEnter2D(Collision2D collision) 
@@ -54,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
 		if(collision.gameObject.tag == "BlackHole")
 		{
-			m_stageController.nextStage();
+			m_stageController.StageReady();
 		}
       
     }
