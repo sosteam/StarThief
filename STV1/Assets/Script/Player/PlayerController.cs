@@ -14,10 +14,10 @@ public class PlayerController : MonoBehaviour
 	void Start () 
 	{
 		m_rb = GetComponent<Rigidbody2D>();
-		SetValue setValue = GameObject.Find("SetValue").GetComponent<SetValue>(); 
-		m_playerSpeedMove = setValue.globalSpeed.PlayerMove;
-		m_playerSpeedRotate = setValue.globalSpeed.PlayerRotate;
-		m_stageController = GameObject.FindWithTag("GameController").GetComponent<StageController>();
+		ValueController valueController = GameObject.Find("ValueObject").GetComponent<ValueController>(); 
+		m_playerSpeedMove = valueController.globalSpeed.PlayerMove;
+		m_playerSpeedRotate = valueController.globalSpeed.PlayerRotate;
+		m_stageController = GameObject.Find("GameControlObject").GetComponent<StageController>();
 	}
 	
 	// Update is called once per frame
@@ -42,9 +42,20 @@ public class PlayerController : MonoBehaviour
 		 
 	}
 
-	void movePlayer()
+	public void movePlayer()
 	{
 		 m_rb.AddForce( m_vDirection * m_playerSpeedMove);
+		 m_rb.angularVelocity = m_playerSpeedRotate; 
+	}
+
+	public void stopPlayer()
+	{
+		if( m_rb != null)
+		{
+			m_rb.velocity = Vector3.zero;
+			m_rb.angularVelocity = 0f; 
+		}
+
 	}
 
 	 void OnCollisionEnter2D(Collision2D collision) 

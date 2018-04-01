@@ -5,6 +5,7 @@ using UnityEngine;
 public class StageController : MonoBehaviour 
 {
 	public int StageNumber;
+	PlayerController playerController;
 	public GameObject Block;
 	public GameObject BlackHole;
 	GameObject Enemy01;
@@ -19,26 +20,28 @@ public class StageController : MonoBehaviour
 	float m_fBlokcSizeY;
 	float m_fEnemy01Speed;
 	bool m_isRunning = false;
-
+	
 	// Use this for initialization
 	void Start () 
 	{
-		SetValue setValue = GameObject.Find("SetValue").GetComponent<SetValue>();
+		ValueController valueController = GameObject.Find("ValueObject").GetComponent<ValueController>();
+		playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+		if( playerController == null) Debug.Log("PlayerController is Null");
 		Enemy01 = (GameObject)Resources.Load("Enemy01");
-		m_fScreenX = setValue.globalScreen.ScreenX;
-		m_fScreenY = setValue.globalScreen.ScreenY; 
+		m_fScreenX = valueController.globalScreen.ScreenX;
+		m_fScreenY = valueController.globalScreen.ScreenY; 
 		m_fScreenHalfX = m_fScreenX / 2.0f;
 		m_fScreenHalfY = m_fScreenY / 2.0f;
-		m_nBlockCountX = setValue.globalScreen.BlockCountX;
-		m_nBlockCountY = setValue.globalScreen.BlockCountY;
-		m_fBlockSizeX = setValue.globalScreen.BlockSizeX;
-		m_fBlokcSizeY = setValue.globalScreen.BlockSizeY;
-		m_fBlackHoleRadius = setValue.globalScreen.BlackHoleRadius;
+		m_nBlockCountX = valueController.globalScreen.BlockCountX;
+		m_nBlockCountY = valueController.globalScreen.BlockCountY;
+		m_fBlockSizeX = valueController.globalScreen.BlockSizeX;
+		m_fBlokcSizeY = valueController.globalScreen.BlockSizeY;
+		m_fBlackHoleRadius = valueController.globalScreen.BlackHoleRadius;
 
 		StageReady();
 	}
 	
-	pubiic bool getRunning()
+	public bool getRunning()
 	{
 		return m_isRunning;
 	}
@@ -50,15 +53,24 @@ public class StageController : MonoBehaviour
 
 	public void StageReady()
 	{
+		setRunning( false);
+
+		//Player멈춤
+		playerController.stopPlayer();
+		//Ready Next Stage 
 		StageNumber++;
-		resetBlackHole();
+		BlackHoleReady();
 		makeAllBlock(StageNumber);
-		resetEnemy(StageNumber);
+		EnemyReady(StageNumber);
 	}
 
 	public void StageAction()
 	{
 		setRunning( true);
+
+		playerController.movePlayer();
+
+		//EnemyAction();
 	}
 
 	void makeAllBlock( int nBlockMax)
@@ -75,7 +87,7 @@ public class StageController : MonoBehaviour
 		}
 	}
 
-	void resetBlackHole()
+	void BlackHoleReady()
 	{
 			float fPosX = Random.Range( -m_fScreenHalfX + m_fBlackHoleRadius, m_fScreenHalfX - m_fBlackHoleRadius);
 			float fPosY = Random.Range( -m_fScreenHalfY + m_fBlackHoleRadius, m_fScreenHalfY - m_fBlackHoleRadius);
@@ -83,49 +95,55 @@ public class StageController : MonoBehaviour
 			BlackHole.transform.Translate( fPosX, fPosY, 0.0f);
 	}
 
-	void resetEnemy(int nStage)
+	void EnemyReady(int nStage)
 	{
 		//위치 선정
 		for( int nCount = 0; nCount < StageNumber; nCount++)
 		{
 			float xPos = 0.0f, yPos = 0.0f;
 			int nEdge = Random.Range(1, 5); // Top, Bottom, Left, Right 선정
-			Vector2 vDirection = new Vector2( 0, 0);
+			int nStartRotation = 0;
 
 			// Top에 생성. Top의 X축 선상. 최상단 Y값보다 1 낮은 곳에 있다.
 			if( nEdge == 1)
 			{
 				xPos = Random.Range( -m_fScreenHalfX +1.0f, m_fScreenHalfX - 1.0f);
 				yPos = m_fScreenY/2 -1.0f;
-				vDirection = new Vector2( 0, -1);
+				nStartRotation = 180;
 			}
 			// Bottom에 생성. Bottom의 X축 선상. 최하단 보다 1 높은 곳에 있다.
 			if( nEdge == 2)
 			{
 				xPos = Random.Range( -m_fScreenHalfX +1.0f, m_fScreenHalfX - 1.0f);
 				yPos = -m_fScreenY/2 +1.0f;
-				vDirection = new Vector2( 0, 1);
+				nStartRotation = 0;
 			}
 			// Left에 생성. Left의 Y축 선상.  최왼쪽 보다 1 오른쪽에 있다.
 			if( nEdge == 3)
 			{
 				xPos = -m_fScreenX/2 +1.0f;
 				yPos = Random.Range( -m_fScreenHalfY +1.0f, m_fScreenHalfY - 1.0f);
-				vDirection = new Vector2( 1, 0);
+				nStartRotation = -90;
 			}
 			// Right에 생성. Rigt의 Y축 선상. 최 오른쪽 보다 1 왼쪽에 있다.
 			if( nEdge == 4)
 			{
 				xPos = m_fScreenX/2 -1.0f;
 				yPos = Random.Range( -m_fScreenHalfY +1.0f, m_fScreenHalfY - 1.0f);
-				vDirection = new Vector2( -1, 0);
+				nStartRotation = 90;
 			}
 
 			//Debug.Log( nEdge + ", " + xPos + ", " + yPos);
-			//Enemy01 = (GameObject)Instantiate(Resources.Load("Enemy01"));
-			Instantiate(Enemy01, new Vector2( xPos, yPos), Quaternion.identity);
-			//Instantiate( Enemy01, new Vector2( xPos, yPos), Quaternion.identity);
-
+			Vector2 vEnemy01 = new Vector2( xPos, yPos);
+			Quaternion rotation = Quaternion.identity;
+			rotation.eulerAngles = new Vector3(0, 0, nStartRotation); 
+			Instantiate(Enemy01, vEnemy01, rotation);
 		}
+	}
+
+	void EnemyAction()
+	{
+		EnemyController enemyController = Enemy01.GetComponent<EnemyController>();
+		enemyController.Move();
 	}
 }

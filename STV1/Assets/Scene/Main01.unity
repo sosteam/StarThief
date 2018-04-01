@@ -221,8 +221,8 @@ GameObject:
   - component: {fileID: 277630178}
   - component: {fileID: 277630180}
   m_Layer: 0
-  m_Name: GameController
-  m_TagString: GameController
+  m_Name: GameControlObject
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 359684098}
   - component: {fileID: 359684099}
   m_Layer: 0
-  m_Name: SetValue
+  m_Name: ValueObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -303,22 +303,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 359684097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c085682fcec2960449cdfeaf92afdf27, type: 3}
+  m_Script: {fileID: 11500000, guid: 143e2f92f0389d340b7265798238be3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   globalSpeed:
-    PlayerMove: 0.02
+    PlayerMove: 0.03
     PlayerRotate: 0.0015
-    Enemy01Move: 0.02
+    Enemy01Move: 0.2
     Enemy02Move: 0.02
   globalScreen:
     ScreenX: 11.2
     ScreenY: 20
-    BlackHoleRadius: 1
+    BlackHoleRadius: 1.5
     BlockCountX: 10
-    BlockCountY: 20
+    BlockCountY: 24
     BlockSizeX: 1.12
-    BlockSizeY: 1
+    BlockSizeY: 0.825
 --- !u!1 &571545323 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1301009925308410, guid: 0f8d1dd13edd156469c1019d9ce76cef,
@@ -342,7 +342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &584628778
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -544,7 +544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &952954149
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -751,7 +751,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1301009925308410, guid: 0f8d1dd13edd156469c1019d9ce76cef, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f8d1dd13edd156469c1019d9ce76cef, type: 2}
