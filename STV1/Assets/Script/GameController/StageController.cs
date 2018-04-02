@@ -70,6 +70,8 @@ public class StageController : MonoBehaviour
 
 		playerController.movePlayer();
 
+		//playerController.actionShooter();
+
 		//EnemyAction();
 	}
 

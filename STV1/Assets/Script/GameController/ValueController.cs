@@ -22,9 +22,24 @@ public class GlobalSpeed
 	public float Enemy01Move;
 	public float Enemy02Move;
 }
+
+[System.Serializable]
+public class GlobalShooter
+{
+	public float Shooter0Rate = 1.0f;
+	/*
+	public float Shooter1Rate = 1.0f;
+	public float Shooter2Rate = 1.0f;
+	public float Shooter3Rate = 1.0f;
+	public float Shooter4Rate = 1.0f;
+	*/
+	public float BulletSpeed = 1.0f;
+}
+
 public class ValueController : MonoBehaviour 
 {
 
 	public GlobalSpeed globalSpeed;
 	public GlobalScreen globalScreen;
+	public GlobalShooter globalShooter;
 }
