@@ -9,6 +9,7 @@ TagManager:
   - Enemy01
   - Enemy02
   - Enemy
+  - Star
   layers:
   - Default
   - TransparentFX

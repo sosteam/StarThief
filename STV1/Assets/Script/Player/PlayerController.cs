@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
 	GameObject m_Bullet0;
 	float m_nextFire;
 
+	//Shooter 관련
+	int m_nShooter0Direction =0;
+	int[] m_arrShooterDirection = {0, 45, 90, 135, 180, -135, -90, -45};
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -26,9 +30,9 @@ public class PlayerController : MonoBehaviour
 		ValueController valueController = GameObject.Find("ValueObject").GetComponent<ValueController>(); 
 		m_playerSpeedMove = valueController.globalSpeed.PlayerMove;
 		m_playerSpeedRotate = valueController.globalSpeed.PlayerRotate;
-		m_Shooter0Rate = valueController.globalShooter.BulletSpeed;
+		m_Shooter0Rate = valueController.globalShooter.Shooter0Rate;
 		m_stageController = GameObject.Find("GameControlObject").GetComponent<StageController>();
-		m_Bullet0 = GameObject.Find("BulletC0L01");
+		m_Bullet0 = (GameObject)Resources.Load("BulletC0L01");
 	}
 	
 	// Update is called once per frame
@@ -72,6 +76,11 @@ public class PlayerController : MonoBehaviour
  				m_lineRenderer.SetPosition(1, Vector3.zero);
 			}
 		}
+
+		if( m_stageController.getRunning())
+		{
+			actionShooter();
+		}
 	}
 
 	void dragPosition()
@@ -107,14 +116,18 @@ public class PlayerController : MonoBehaviour
 
 	public void actionShooter()
 	{
-		if( m_stageController.getRunning())
+		//Shooter0 시작
+		if (Time.time > m_nextFire)
 		{
-			//Shooter0 시작
-			if (Time.time > m_nextFire)
-			{
-				m_nextFire = Time.time + m_Shooter0Rate;
-				Instantiate(m_Bullet0, m_rb.transform.position,  m_rb.transform.rotation);
-			}
+			m_nextFire = Time.time + m_Shooter0Rate;
+			Quaternion rotation = Quaternion.identity;
+			rotation.eulerAngles = new Vector3(0, 0, m_arrShooterDirection[m_nShooter0Direction]); 
+			Instantiate(m_Bullet0, m_rb.transform.position,  rotation);
+			//다음 방향
+			m_nShooter0Direction++;
+			if( m_nShooter0Direction >= m_arrShooterDirection.Length) m_nShooter0Direction = 0;
+			//Debug.Log("Fire:" + m_nextFire);
+			
 		}
 	}
 
