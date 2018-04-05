@@ -200,7 +200,7 @@ public class StageController : MonoBehaviour
 				//회전 설정
 				Quaternion rotation = Quaternion.identity;
 				rotation = Quaternion.AngleAxis(fAngle, Vector3.forward);
-				Instantiate(Enemy02, vEnemy02, rotation);
+				Instantiate( Enemy02, vEnemy02, rotation);
 			}
 		}
 	}
@@ -228,7 +228,7 @@ public class StageController : MonoBehaviour
 			} 
 		}
 
-		Debug.Log( arrStar[nSelectedStar].transform.position.x + "," + arrStar[nSelectedStar].transform.position.y);
+		//Debug.Log( arrStar[nSelectedStar].transform.position.x + "," + arrStar[nSelectedStar].transform.position.y);
 		return arrStar[nSelectedStar];
 	}
 

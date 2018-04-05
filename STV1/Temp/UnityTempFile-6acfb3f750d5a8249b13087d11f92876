@@ -184,6 +184,7 @@ Assets/Script/GameController/ScreenController.cs
 Assets/Script/GameController/StageController.cs
 Assets/Script/GameController/ValueController.cs
 Assets/Script/Player/PlayerController.cs
+Assets/Script/Star/StarController.cs
 -r:D:\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll
 -r:D:\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll
 -r:D:\Unity\Editor\Data\Mono\lib\mono\unity\UnityScript.dll

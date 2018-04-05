@@ -24,16 +24,24 @@ public class GlobalSpeed
 }
 
 [System.Serializable]
+public class GlobalHealthDamage
+{
+	public int Enemy01Health = 1;
+	public int Enemy02Health = 1;
+	public int Bullet0Damage = 1;
+}
+
+[System.Serializable]
 public class GlobalShooter
 {
 	public float Shooter0Rate;
-	public float Bullet0Distance;
 	/*
 	public float Shooter1Rate = 1.0f;
 	public float Shooter2Rate = 1.0f;
 	public float Shooter3Rate = 1.0f;
 	public float Shooter4Rate = 1.0f;
 	*/
+	public float Bullet0Distance;
 	public float BulletSpeed;
 }
 
@@ -51,4 +59,5 @@ public class ValueController : MonoBehaviour
 	public GlobalScreen globalScreen;
 	public GlobalShooter globalShooter;
 	public GlobalBalance globalBalance;
+	public GlobalHealthDamage globalHealthDamage;
 }

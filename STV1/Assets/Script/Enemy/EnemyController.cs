@@ -7,6 +7,9 @@ public class EnemyController : MonoBehaviour
 	Rigidbody2D m_rb;
 	float m_EnemySpeed;
 	StageController m_stageController;
+	bool m_isStarDrag = false;
+	GameObject m_Star;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -27,6 +30,9 @@ public class EnemyController : MonoBehaviour
 		if( m_stageController.getRunning())
 		{
 			Move();
+
+			if( m_isStarDrag )
+        		m_Star.transform.position = transform.position;
 		}
 		else
 		{
@@ -43,6 +49,16 @@ public class EnemyController : MonoBehaviour
 	{
 			m_rb.velocity = Vector3.zero;
 			m_rb.angularVelocity = 0f; 
+	}
+
+	void OnTriggerEnter2D(Collider2D other) 
+	{
+		if( other.tag.StartsWith("Star") && m_isStarDrag == false)
+		{
+			m_Star = other.gameObject;
+			//Debug.Log("m_StarGrab:" + m_isStarDrag);
+			m_isStarDrag = true;
+		}
 	}
 
 }
