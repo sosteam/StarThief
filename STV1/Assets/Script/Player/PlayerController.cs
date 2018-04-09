@@ -14,7 +14,13 @@ public class PlayerController : MonoBehaviour
 	bool m_isPushPosition = false;
 	float m_Shooter0Rate;
 	GameObject m_Bullet0;
-	float m_nextFire;
+
+	float m_nextFire0;
+	float m_nextFire1;
+	float m_nextFire2;
+	float m_nextFire3;
+	float m_nextFire4;
+
 
 	//Shooter 관련
 	int m_nShooter0Direction =0;
@@ -27,10 +33,10 @@ public class PlayerController : MonoBehaviour
 		m_lineRenderer = GetComponent<LineRenderer>();
 		//m_lineRenderer.startWidth = 0.05f;
 		//m_llneRenderer.endWidth = 0.05f;
-		ValueController valueController = GameObject.Find("ValueObject").GetComponent<ValueController>(); 
-		m_playerSpeedMove = valueController.globalSpeed.PlayerMove;
-		m_playerSpeedRotate = valueController.globalSpeed.PlayerRotate;
-		m_Shooter0Rate = valueController.globalShooter.Shooter0Rate;
+		//ValueController valueController = GameObject.Find("ValueObject").GetComponent<ValueController>(); 
+		m_fPlayerMoveSpeed = StaticValueController.globalPlayer.MoveSpeed;
+		m_fPlayerRotateSpeed = StaticValueController.globalPlayer.RotateSpeed;
+		m_fShooter0Rate = StaticValueController.globalShooter0.Rate;
 		m_stageController = GameObject.Find("GameControlObject").GetComponent<StageController>();
 		m_Bullet0 = (GameObject)Resources.Load("BulletC0L01");
 	}
@@ -100,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
 	public void movePlayer()
 	{
-		 m_rb.AddForce( m_vDirection * m_playerSpeedMove);
+		 m_rb.AddForce( m_vDirection * m_playerSpeedRotate);
 		 m_rb.angularVelocity = m_playerSpeedRotate;
 	}
 
@@ -112,23 +118,6 @@ public class PlayerController : MonoBehaviour
 			m_rb.angularVelocity = 0f; 
 		}
 
-	}
-
-	public void actionShooter()
-	{
-		//Shooter0 시작
-		if (Time.time > m_nextFire)
-		{
-			m_nextFire = Time.time + m_Shooter0Rate;
-			Quaternion rotation = Quaternion.identity;
-			rotation.eulerAngles = new Vector3(0, 0, m_arrShooterDirection[m_nShooter0Direction]); 
-			Instantiate(m_Bullet0, m_rb.transform.position,  rotation);
-			//다음 방향
-			m_nShooter0Direction++;
-			if( m_nShooter0Direction >= m_arrShooterDirection.Length) m_nShooter0Direction = 0;
-			//Debug.Log("Fire:" + m_nextFire);
-			
-		}
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) 
@@ -144,4 +133,31 @@ public class PlayerController : MonoBehaviour
 		}
       
     }
+
+	public void actionShooter()
+	{
+		if( m_bActiveClass0) { actionShooter0()};
+    	if( m_bActiveClass1) { };
+		if( m_bActiveClass2) { };
+		if( m_bActiveClass3) { };
+		if( m_bActiveClass4) { };
+	}
+
+	void actionShooter0()
+	{
+		//Shooter0 시작
+		if (Time.time > m_nextFire0)
+		{
+			m_nextFire0 = Time.time + m_fShooter0Rate;
+			Quaternion rotation = Quaternion.identity;
+			rotation.eulerAngles = new Vector3(0, 0, m_arrShooterDirection[m_nShooter0Direction]); 
+			Instantiate(m_Bullet0, m_rb.transform.position,  rotation);
+			//다음 방향
+			m_nShooter0Direction++;
+			if( m_nShooter0Direction >= m_arrShooterDirection.Length) m_nShooter0Direction = 0;
+			//Debug.Log("Fire:" + m_nextFire);
+		}
+	}
+
+
 }

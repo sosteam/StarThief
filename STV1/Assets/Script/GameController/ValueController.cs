@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 [System.Serializable]
 public class GlobalScreen
 {
@@ -13,6 +14,7 @@ public class GlobalScreen
 	public float BlockSizeX = 1.12f;
 	public float BlockSizeY = 0.825f;
 }
+*/
 
 [System.Serializable]
 public class GlobalSpeed
@@ -28,22 +30,18 @@ public class GlobalHealthDamage
 {
 	public int Enemy01Health = 1;
 	public int Enemy02Health = 1;
-	public int Bullet0Damage = 1;
+	public int BulletC0L01Damage = 1;
 }
 
+/*
 [System.Serializable]
 public class GlobalShooter
 {
 	public float Shooter0Rate;
-	/*
-	public float Shooter1Rate = 1.0f;
-	public float Shooter2Rate = 1.0f;
-	public float Shooter3Rate = 1.0f;
-	public float Shooter4Rate = 1.0f;
-	*/
 	public float Bullet0Distance;
 	public float BulletSpeed;
 }
+*/
 
 [System.Serializable]
 public class GlobalBalance

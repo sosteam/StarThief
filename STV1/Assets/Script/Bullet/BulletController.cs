@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour 
 {
 	Rigidbody2D m_rb;
-	float m_BulletSpeedMove;
+	float m_fBulletMoveSpeed;
 	float m_Bullet0Distance;
 	StageController m_stageController;
 	Vector3 m_vStartPosition;
@@ -14,10 +14,9 @@ public class BulletController : MonoBehaviour
 	void Start () 
 	{
 		m_rb = GetComponent<Rigidbody2D>();
-		ValueController valueController = GameObject.Find("ValueObject").GetComponent<ValueController>();
 		m_stageController = GameObject.Find("GameControlObject").GetComponent<StageController>();
-		m_BulletSpeedMove = valueController.globalShooter.BulletSpeed;
-		m_Bullet0Distance = valueController.globalShooter.Bullet0Distance;
+		m_fBulletMoveSpeed = StaticValueController.globalBullet.MoveSpeed;
+		m_fBullet0Distance = valueController.globalShooter.Bullet0Distance;
 		m_vStartPosition = transform.position;
 	}
 	

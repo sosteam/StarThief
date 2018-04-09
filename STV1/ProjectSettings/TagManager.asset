@@ -10,6 +10,7 @@ TagManager:
   - Enemy02
   - Enemy
   - Star
+  - BulletC0L01
   layers:
   - Default
   - TransparentFX

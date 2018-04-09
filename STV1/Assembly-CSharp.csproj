@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>4</LangVersion>
-</PropertyGroup>
+  </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -16,8 +16,7 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>Assets</BaseDirectory>
-	<LangVersion>default</LangVersion>
-</PropertyGroup>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -28,8 +27,7 @@
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	<LangVersion>default</LangVersion>
-</PropertyGroup>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
@@ -38,8 +36,7 @@
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	<LangVersion>default</LangVersion>
-</PropertyGroup>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.XML" />
@@ -56,8 +53,10 @@
   <ItemGroup>
      <Compile Include="Assets\Script\Bullet\BulletController.cs" />
      <Compile Include="Assets\Script\Enemy\EnemyController.cs" />
+     <Compile Include="Assets\Script\GameController\GameManagerController.cs" />
      <Compile Include="Assets\Script\GameController\ScreenController.cs" />
      <Compile Include="Assets\Script\GameController\StageController.cs" />
+     <Compile Include="Assets\Script\GameController\StaticValueController.cs" />
      <Compile Include="Assets\Script\GameController\ValueController.cs" />
      <Compile Include="Assets\Script\Player\PlayerController.cs" />
  <Reference Include="UnityEngine.UI">
@@ -162,4 +161,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
 </Project>
