@@ -218,6 +218,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 277630179}
+  - component: {fileID: 277630182}
   - component: {fileID: 277630181}
   - component: {fileID: 277630178}
   - component: {fileID: 277630180}
@@ -250,7 +251,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 359684098}
-  - {fileID: 868755523}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -277,6 +277,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f1f87d7aaea5004b8433df17378c5be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &277630182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 277630177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9199c0f9bd9fe054ea5cce5823b5fe69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &359684097
@@ -324,18 +335,6 @@ MonoBehaviour:
     PlayerRotate: 90
     Enemy01Move: 0.2
     Enemy02Move: 2
-  globalScreen:
-    ScreenX: 11.2
-    ScreenY: 20
-    BlackHoleRadius: 1.5
-    BlockCountX: 10
-    BlockCountY: 24
-    BlockSizeX: 1.12
-    BlockSizeY: 0.825
-  globalShooter:
-    Shooter0Rate: 0.25
-    Bullet0Distance: 5
-    BulletSpeed: 5
   globalBalance:
     BlockCount: 0
     Enemy01Count: 0
@@ -641,46 +640,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &868755522
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 868755523}
-  - component: {fileID: 868755524}
-  m_Layer: 0
-  m_Name: StaticValueObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &868755523
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 868755522}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 277630179}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &868755524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 868755522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9199c0f9bd9fe054ea5cce5823b5fe69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &952954148
 GameObject:
   m_ObjectHideFlags: 0

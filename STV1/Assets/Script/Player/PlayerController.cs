@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour 
 {
-	float m_playerSpeedMove;
-	float m_playerSpeedRotate;
+	float m_fPlayerMoveSpeed;
+	float m_fPlayerRotateSpeed;
 	StageController m_stageController;
 	Rigidbody2D m_rb;
 	Vector3 m_vMousePosition;
 	Vector2 m_vDirection;
 	LineRenderer m_lineRenderer;
 	bool m_isPushPosition = false;
-	float m_Shooter0Rate;
+	float m_fShooter0Rate;
+	float m_fShooter0Distance;
+	float m_fBulletC0L01MoveSpeed;
 	GameObject m_Bullet0;
+
+	bool m_bActiveClass0;
+	bool m_bActiveClass1;
+	bool m_bActiveClass2;
+	bool m_bActiveClass3;
+	bool m_bActiveClass4;
 
 	float m_nextFire0;
 	float m_nextFire1;
@@ -37,7 +45,14 @@ public class PlayerController : MonoBehaviour
 		m_fPlayerMoveSpeed = StaticValueController.globalPlayer.MoveSpeed;
 		m_fPlayerRotateSpeed = StaticValueController.globalPlayer.RotateSpeed;
 		m_fShooter0Rate = StaticValueController.globalShooter0.Rate;
+		m_fShooter0Distance = StaticValueController.globalShooter0.Distance;
+		m_fBulletC0L01MoveSpeed =StaticValueController.globalBulletC0L01.MoveSpeed;
 		m_stageController = GameObject.Find("GameControlObject").GetComponent<StageController>();
+		m_bActiveClass0 = StaticValueController.globalManager.ActiveClass0;
+		m_bActiveClass1 = StaticValueController.globalManager.ActiveClass1;
+		m_bActiveClass2 = StaticValueController.globalManager.AcitveClass2;
+		m_bActiveClass3 = StaticValueController.globalManager.ActiveClass3;
+		m_bActiveClass4 = StaticValueController.globalManager.ActiveClass4;
 		m_Bullet0 = (GameObject)Resources.Load("BulletC0L01");
 	}
 	
@@ -83,7 +98,7 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 
-		if( m_stageController.getRunning())
+		if( m_stageController != null && m_stageController.getRunning())
 		{
 			actionShooter();
 		}
@@ -106,8 +121,8 @@ public class PlayerController : MonoBehaviour
 
 	public void movePlayer()
 	{
-		 m_rb.AddForce( m_vDirection * m_playerSpeedRotate);
-		 m_rb.angularVelocity = m_playerSpeedRotate;
+		 m_rb.AddForce( m_vDirection * m_fPlayerMoveSpeed);
+		 m_rb.angularVelocity = m_fPlayerRotateSpeed;
 	}
 
 	public void stopPlayer()
@@ -137,10 +152,10 @@ public class PlayerController : MonoBehaviour
 	public void actionShooter()
 	{
         if( m_bActiveClass0) { actionShooter0();}
-    	if( m_bActiveClass1) { };
-		if( m_bActiveClass2) { };
-		if( m_bActiveClass3) { };
-		if( m_bActiveClass4) { };
+    	if( m_bActiveClass1) { actionShooter1();};
+		if( m_bActiveClass2) { actionShooter2();};
+		if( m_bActiveClass3) { actionShooter3();};
+		if( m_bActiveClass4) { actionShooter4();};
 	}
 
 	void actionShooter0()
@@ -151,13 +166,36 @@ public class PlayerController : MonoBehaviour
 			m_nextFire0 = Time.time + m_fShooter0Rate;
 			Quaternion rotation = Quaternion.identity;
 			rotation.eulerAngles = new Vector3(0, 0, m_arrShooterDirection[m_nShooter0Direction]); 
-			Instantiate(m_Bullet0, m_rb.transform.position,  rotation);
+			GameObject gameObject = Instantiate(m_Bullet0, m_rb.transform.position,  rotation);
+			BulletController bulletController = (BulletController)(gameObject.GetComponent<BulletController>());
+			bulletController.initBullet(m_fBulletC0L01MoveSpeed, m_fShooter0Distance);
 			//다음 방향
 			m_nShooter0Direction++;
 			if( m_nShooter0Direction >= m_arrShooterDirection.Length) m_nShooter0Direction = 0;
 			//Debug.Log("Fire:" + m_nextFire);
 		}
 	}
+
+	void actionShooter1()
+	{
+
+	}
+
+	void actionShooter2()
+	{
+		
+	}
+
+	void actionShooter3()
+	{
+		
+	}
+
+	void actionShooter4()
+	{
+		
+	}
+
 
 
 }

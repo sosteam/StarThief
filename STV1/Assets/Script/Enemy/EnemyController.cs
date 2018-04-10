@@ -91,8 +91,8 @@ public class EnemyController : MonoBehaviour
 
 			if( m_nEnemyHealth <= 0) // Destroy
 			{
-                GameManagerController.Instance.addScore( StaticValueController.globalEnemy01.Score);
-                GameManagerController.Instance.addCoin(StaticValueController.globalEnemy01.Coin);
+                GameManagerController.Instance.addScore( m_nEnemyScore);
+                GameManagerController.Instance.addCoin( m_nEnemyCoin);
 				Destroy( gameObject);
 			}
 		}

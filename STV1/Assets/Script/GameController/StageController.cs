@@ -31,21 +31,21 @@ public class StageController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		ValueController valueController = GameObject.Find("ValueObject").GetComponent<ValueController>();
+		//ValueController valueController = GameObject.Find("ValueObject").GetComponent<ValueController>();
 		playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 		if( playerController == null) Debug.Log("PlayerController is Null");
 		Enemy01 = (GameObject)Resources.Load("Enemy01");
 		Enemy02 = (GameObject)Resources.Load("Enemy02");
 		Star = (GameObject)Resources.Load("Star");
-		m_fScreenX = valueController.globalScreen.ScreenX;
-		m_fScreenY = valueController.globalScreen.ScreenY; 
+		m_fScreenX = StaticValueController.globalScreen.ScreenX;
+		m_fScreenY = StaticValueController.globalScreen.ScreenY; 
 		m_fScreenHalfX = m_fScreenX / 2.0f;
 		m_fScreenHalfY = m_fScreenY / 2.0f;
-		m_nBlockCountX = valueController.globalScreen.BlockCountX;
-		m_nBlockCountY = valueController.globalScreen.BlockCountY;
-		m_fBlockSizeX = valueController.globalScreen.BlockSizeX;
-		m_fBlokcSizeY = valueController.globalScreen.BlockSizeY;
-		m_fBlackHoleRadius = valueController.globalScreen.BlackHoleRadius;
+		m_nBlockCountX = StaticValueController.globalScreen.BlockCountX;
+		m_nBlockCountY = StaticValueController.globalScreen.BlockCountY;
+		m_fBlockSizeX = StaticValueController.globalScreen.BlockSizeX;
+		m_fBlokcSizeY = StaticValueController.globalScreen.BlockSizeY;
+		m_fBlackHoleRadius = StaticValueController.globalETC.BlackHoleRadius;
 
 		StarReady();
 		StageReady();

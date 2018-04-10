@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class GlobalScreen
 {
-    public static float ScreenX;
-    public static float ScreenY;
-    public static int   BlockCountX;
-    public static int   BlockCountY;
-    public static float BlockSizeX;
-    public static float BlockSizeY;
+    public float ScreenX;
+    public float ScreenY;
+    public int   BlockCountX;
+    public int   BlockCountY;
+    public float BlockSizeX;
+    public float BlockSizeY;
 }
 
 public class GlobalManager
 {
-    public static bool      ActiveClass0;
-    public static bool      ActiveClass1;
-    public static bool      AcitveClass2;
-    public static bool      ActiveClass3;
-    public static bool      ActiveClass4;
+    public bool      ActiveClass0;
+    public bool      ActiveClass1;
+    public bool      AcitveClass2;
+    public bool      ActiveClass3;
+    public bool      ActiveClass4;
 }
 
 public class GlobalPlayer
 {
-    public static float     MoveSpeed;
-    public static float     RotateSpeed;
-    public static float     Shooter0Rate;
+    public float     MoveSpeed;
+    public float     RotateSpeed;
+    public float     Shooter0Rate;
 }
 
 public class GlobalShooter
@@ -56,19 +56,19 @@ public class GlobalBullet
 
 public class StaticValueController : MonoBehaviour 
 {
-    public static GlobalScreen  globalScreen;
-    public static GlobalManager globalManager;
-    public static GlobalPlayer  globalPlayer;
-    public static GlobalShooter globalShooter0;
-    public static GlobalShooter globalShooter1;
-    public static GlobalShooter globalShooter2;
-    public static GlobalShooter globalShooter3;
-    public static GlobalShooter globalShooter4;
+    public static GlobalScreen  globalScreen = new GlobalScreen();
+    public static GlobalManager globalManager = new GlobalManager();
+    public static GlobalPlayer  globalPlayer = new GlobalPlayer();
+    public static GlobalShooter globalShooter0 = new GlobalShooter();
+    public static GlobalShooter globalShooter1 = new GlobalShooter();
+    public static GlobalShooter globalShooter2 = new GlobalShooter();
+    public static GlobalShooter globalShooter3 = new GlobalShooter();
+    public static GlobalShooter globalShooter4 = new GlobalShooter();
 
-    public static GlobalETC     globalETC;
-	public static GlobalEnemy   globalEnemy01;
-	public static GlobalEnemy   globalEnemy02;
-    public static GlobalBullet  globalBulletC0L01;
+    public static GlobalETC     globalETC = new GlobalETC();
+	public static GlobalEnemy   globalEnemy01 = new GlobalEnemy();
+	public static GlobalEnemy   globalEnemy02 = new GlobalEnemy();
+    public static GlobalBullet  globalBulletC0L01 = new GlobalBullet();
 
     void Awake()
     {

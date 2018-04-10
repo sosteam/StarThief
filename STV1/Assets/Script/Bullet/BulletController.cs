@@ -6,7 +6,7 @@ public class BulletController : MonoBehaviour
 {
 	Rigidbody2D m_rb;
 	float m_fBulletMoveSpeed;
-	float m_Bullet0Distance;
+	float m_fBulletDistance;
 	StageController m_stageController;
 	Vector3 m_vStartPosition;
 
@@ -15,9 +15,7 @@ public class BulletController : MonoBehaviour
 	{
 		m_rb = GetComponent<Rigidbody2D>();
 		m_stageController = GameObject.Find("GameControlObject").GetComponent<StageController>();
-		m_fBulletMoveSpeed = StaticValueController.globalBullet.MoveSpeed;
-		m_fBullet0Distance = valueController.globalShooter.Bullet0Distance;
-		m_vStartPosition = transform.position;
+		m_vStartPosition = transform.position;//출발 위치 기록
 	}
 	
 	void FixedUpdate() 
@@ -38,7 +36,7 @@ public class BulletController : MonoBehaviour
 
 	void moveBullet(/*Vector2 vDirection*/)
 	{
-		m_rb.velocity = transform.up * m_BulletSpeedMove;
+		m_rb.velocity = transform.up * m_fBulletMoveSpeed;
 		//Debug.Log(m_BulletSpeedMove);
 	}
 
@@ -46,9 +44,16 @@ public class BulletController : MonoBehaviour
 	{
 		//Debug.Log("m_vStartPosition:" + m_vStartPosition);
 
-		if( Vector3.Distance(transform.position, m_vStartPosition) > m_Bullet0Distance)
+		if( Vector3.Distance(transform.position, m_vStartPosition) > m_fBulletDistance)
 		{
 			if( gameObject != null)	Destroy(gameObject);
 		} 
+	}
+
+	public void initBullet(float fMoveSpeed, float fDistance)
+	{
+		m_fBulletMoveSpeed = fMoveSpeed;
+		m_fBulletDistance = fDistance;
+		
 	}
 }
