@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
 
 	public void actionShooter()
 	{
-		if( m_bActiveClass0) { actionShooter0()};
+        if( m_bActiveClass0) { actionShooter0();}
     	if( m_bActiveClass1) { };
 		if( m_bActiveClass2) { };
 		if( m_bActiveClass3) { };
