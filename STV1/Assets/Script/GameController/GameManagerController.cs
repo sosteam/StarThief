@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManagerController : MonoBehaviour 
 {
 	public static GameManagerController Instance;
-	public static int Score = 0;
-	public static int Coin = 0;
+	public int Score = 0;
+	public int Coin = 0;
+	Text textScoreCoin;
 
 	void Awake() 
 	{
@@ -16,7 +18,7 @@ public class GameManagerController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-
+		textScoreCoin = GameObject.Find("ScoreCoin").GetComponent<UnityEngine.UI.Text>(); 
 	}
 	
 	public void resetGame()
@@ -28,11 +30,23 @@ public class GameManagerController : MonoBehaviour
 	public void addScore( int nScore)
 	{
 		Score += nScore;
+		drawText();
 	}
 
     public void addCoin( int nCoin)
 	{
 		Coin += nCoin;
+		drawText();
+	}
+
+	void drawText()
+	{
+		textScoreCoin.text = "Score " + Score + "Coin " + Coin;
+	}
+
+	public void OnClick3lineButton()
+	{
+		Debug.Log("Click 3LineButton");
 	}
 
 }
