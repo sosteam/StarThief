@@ -59,8 +59,22 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		//속도 조정
+		// if( m_rb.velocity.x > m_fPlayerMoveSpeed )
+		// 	m_rb.velocity.x = m_fPlayerMoveSpeed;
+		//Debug.Log("Player Speed: " + m_rb.velocity);
+		// if( m_rb.velocity.magnitude > 10 ) m_rb.velocity.magnitude = 10;
+		//m_rb.AddRelativeForce(Vector2.up * m_fPlayerMoveSpeed, ForceMode2D.Impulse);
+		//m_rb.velocity = transform.forward * m_fPlayerMoveSpeed;
+		//Debug.Log("Player transform.forward: " + transform.forward);
+		//Debug.Log("Player magnitude: " + m_rb.velocity.magnitude);
+
+		//game이 pause 상태면 return;
+		if( GameManagerController.Instance.getPause() == true) return;
+
 		if( Input.GetMouseButtonDown(0))
 		{
+			stopPlayer();
 			m_isPushPosition = false;
 			dragPosition();
 			m_isPushPosition = true;
@@ -122,6 +136,7 @@ public class PlayerController : MonoBehaviour
 	public void movePlayer()
 	{
 		 m_rb.AddForce( m_vDirection * m_fPlayerMoveSpeed);
+		 Debug.Log("Player vDirection: " + m_vDirection + " * Speed:" + m_fPlayerMoveSpeed);
 		 m_rb.angularVelocity = m_fPlayerRotateSpeed;
 	}
 

@@ -6,9 +6,15 @@ using UnityEngine.UI;
 public class GameManagerController : MonoBehaviour 
 {
 	public static GameManagerController Instance;
+	//GameObject objMainCanvas;
+	GameObject objMenuPanel; // Assign in inspector
+	CanvasGroup canvasGroupMenuPanel;
+
+	public bool isPause = false;
 	public int Score = 0;
 	public int Coin = 0;
 	Text textScoreCoin;
+
 
 	void Awake() 
 	{
@@ -18,7 +24,13 @@ public class GameManagerController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		textScoreCoin = GameObject.Find("ScoreCoin").GetComponent<UnityEngine.UI.Text>(); 
+		textScoreCoin = GameObject.Find("ScoreCoin").GetComponent<UnityEngine.UI.Text>();
+		//objMainCanvas = GameObject.Find("MainCanvas");
+		objMenuPanel = GameObject.Find("MenuPanel");
+		
+		canvasGroupMenuPanel = objMenuPanel.GetComponent<CanvasGroup>();
+		canvasGroupMenuPanel.alpha = 0;
+		canvasGroupMenuPanel.interactable = false;
 	}
 	
 	public void resetGame()
@@ -44,9 +56,52 @@ public class GameManagerController : MonoBehaviour
 		textScoreCoin.text = "Score " + Score + "Coin " + Coin;
 	}
 
+	public bool getPause()
+	{
+		return isPause;
+	}
+
+	public void checkStarCount()
+	{
+		
+	}
+
 	public void OnClick3lineButton()
 	{
-		Debug.Log("Click 3LineButton");
+        Time.timeScale = 0;  // 시간을 멈춤
+        isPause = true;
+		// Debug.Log( canvasGroupMenuPanel.interactable);
+		canvasGroupMenuPanel.alpha = 1;
+		canvasGroupMenuPanel.interactable = true;
+		// Debug.Log( canvasGroupMenuPanel.interactable);
+	}
+
+	public void OnClickContinue()
+	{
+		canvasGroupMenuPanel.alpha = 0;
+		canvasGroupMenuPanel.interactable = false;
+		Time.timeScale = 1; // 시간을 재개
+        isPause = false;
+	}
+
+	public void OnClickShop()
+	{
+		
+	}
+
+	public void OnClickSetting()
+	{
+		
+	}
+
+	public void OnClickExit()
+	{
+		
+	}
+
+	public void OnClickRestart()
+	{
+		
 	}
 
 }
